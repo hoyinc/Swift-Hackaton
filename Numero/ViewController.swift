@@ -12,7 +12,7 @@ import AddressBook
 class ViewController: UIViewController {
 
     var addressBook:ABAddressBookRef!
-    var people:NSArray!
+    var people:CFArray!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,8 @@ class ViewController: UIViewController {
     }
     
     func requestAddressBookAccess() {
-        ABAddressBookRequestAccessWithCompletion(addressBook) {
+        
+        ABAddressBookRequestAccessWithCompletion(self.addressBook) {
             granted, error in
             
             if !granted {
@@ -52,10 +53,10 @@ class ViewController: UIViewController {
                 // also let them know that they have to fix this in settings
                 return
             }
-            
-           // if let people = ABAddressBookCopyArrayOfAllPeople(addressBook)?.takeRetainedValue() as? NSArray {
-                // now do something with the array of people
-            //}
+
+            self.people =    ABAddressBookCopyArrayOfAllPeople(self.addressBook)?.takeRetainedValue()
+         
+            println(self.people)
         }
     }
     
