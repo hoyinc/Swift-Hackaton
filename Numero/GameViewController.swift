@@ -7,11 +7,12 @@
 //
 
 import UIKit
-import Addressbook
+import AddressBook
 
 class GameViewController: UIViewController {
     
-    var addressBook:
+    var addressBook:ABAddressBookRef!
+    var people:NSArray!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,16 +27,22 @@ class GameViewController: UIViewController {
         // open it
         
         var error: Unmanaged<CFError>?
-        let addressBook: ABAddressBook? = ABAddressBookCreateWithOptions(nil, &error)?.takeRetainedValue()
-        if addressBook == nil {
+        self.addressBook = ABAddressBookCreateWithOptions(nil, &error)?.takeRetainedValue()
+        if self.addressBook == nil {
             println(error?.takeRetainedValue())
             return
         }
         
         // request permission to use it
         
-        ABAddressBookRequestAccessWithCompletion(addressBook) {
-            granted, error in
+           }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        ABAddressBookRequestAccessWithCompletion(self.addressBook) {
+            
+            (granted:Bool, error:CFError!) in
             
             if !granted {
                 // warn the user that because they just denied permission, this functionality won't work
@@ -43,10 +50,16 @@ class GameViewController: UIViewController {
                 return
             }
             
-            if let people = ABAddressBookCopyArrayOfAllPeople(addressBook)?.takeRetainedValue() as? NSArray {
-                // now do something with the array of people
+            if let people = ABAddressBookCopyArrayOfAllPeople(self.addressBook)?.takeRetainedValue() as? NSArray {
+               
             }
+            
+            // NSLog("%@", self.people);
+            
         }
+
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

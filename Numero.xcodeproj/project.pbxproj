@@ -16,6 +16,7 @@
 		A30EC2351A1F722300F6C5CF /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC2341A1F722300F6C5CF /* GameViewController.swift */; };
 		A30EC2371A1F724000F6C5CF /* CorrectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC2361A1F724000F6C5CF /* CorrectViewController.swift */; };
 		A30EC2391A1F725200F6C5CF /* WrongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC2381A1F725200F6C5CF /* WrongViewController.swift */; };
+		A30EC23B1A1F72DE00F6C5CF /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A30EC23A1A1F72DE00F6C5CF /* AddressBook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		A30EC2341A1F722300F6C5CF /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A30EC2361A1F724000F6C5CF /* CorrectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CorrectViewController.swift; sourceTree = "<group>"; };
 		A30EC2381A1F725200F6C5CF /* WrongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WrongViewController.swift; sourceTree = "<group>"; };
+		A30EC23A1A1F72DE00F6C5CF /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A30EC23B1A1F72DE00F6C5CF /* AddressBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +68,7 @@
 		76F268C51A1F654A0028F4FF = {
 			isa = PBXGroup;
 			children = (
+				A30EC23A1A1F72DE00F6C5CF /* AddressBook.framework */,
 				76F268D01A1F654A0028F4FF /* Numero */,
 				76F268E61A1F654A0028F4FF /* NumeroTests */,
 				76F268CF1A1F654A0028F4FF /* Products */,
