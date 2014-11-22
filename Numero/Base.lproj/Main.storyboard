@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6221" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -29,7 +29,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="ohQ-Bf-e70" kind="modal" id="K4D-hY-9SC"/>
+                                    <segue destination="ohQ-Bf-e70" kind="modal" identifier="gameStart" id="K4D-hY-9SC"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -83,6 +83,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="pickName:" destination="ohQ-Bf-e70" eventType="touchUpInside" id="FFN-Vt-8Xr"/>
                                     <segue destination="nIs-UI-HqE" kind="modal" id="OJo-P7-Fta"/>
                                 </connections>
                             </button>
@@ -93,6 +94,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="pickName:" destination="ohQ-Bf-e70" eventType="touchUpInside" id="t6v-82-joe"/>
                                     <segue destination="Enb-g1-mlB" kind="modal" id="4Je-ng-wbg"/>
                                 </connections>
                             </button>
@@ -103,6 +105,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="pickName:" destination="ohQ-Bf-e70" eventType="touchUpInside" id="W7s-rp-URf"/>
                                     <segue destination="Enb-g1-mlB" kind="modal" id="KYD-Ey-5xu"/>
                                 </connections>
                             </button>
@@ -115,6 +118,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="phoneNumberLabel" destination="eTp-pn-GEG" id="roT-tw-GKF"/>
+                        <outlet property="roundLabel" destination="74o-MX-pwO" id="ciN-Q1-21W"/>
+                        <outlet property="timerLabel" destination="2wP-DP-dlf" id="YOT-Fv-dL9"/>
+                        <outletCollection property="nameChoiceButtons" destination="vvU-Yw-8vM" collectionClass="NSMutableArray" id="fx5-1W-sNg"/>
+                        <outletCollection property="nameChoiceButtons" destination="fWA-ik-XRa" collectionClass="NSMutableArray" id="zVo-id-TEQ"/>
+                        <outletCollection property="nameChoiceButtons" destination="lKH-Zx-ali" collectionClass="NSMutableArray" id="0JK-Dw-KIN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3lr-TU-IM1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -242,6 +253,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="KYD-Ey-5xu"/>
-        <segue reference="c7X-Sk-qUz"/>
+        <segue reference="K4D-hY-9SC"/>
     </inferredMetricsTieBreakers>
 </document>

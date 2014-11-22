@@ -12,7 +12,7 @@ import AddressBook
 class ViewController: UIViewController {
 
     var addressBook:ABAddressBookRef!
-    var people:CFArray!
+    var peopleDB:[String:String] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,6 @@ class ViewController: UIViewController {
         }
         
         // open it
-        
         var error: Unmanaged<CFError>?
         self.addressBook = ABAddressBookCreateWithOptions(nil, &error)?.takeRetainedValue()
         if self.addressBook == nil {
@@ -54,9 +53,38 @@ class ViewController: UIViewController {
                 return
             }
 
-            self.people =    ABAddressBookCopyArrayOfAllPeople(self.addressBook)?.takeRetainedValue()
+            let people:[ABRecordRef] = ABAddressBookCopyArrayOfAllPeople(self.addressBook)?.takeRetainedValue() as [ABRecordRef]
+            
+            self.createPersonDB(people)
          
-            println(self.people)
+        }
+    }
+    
+    // Query everyone first number and store in a collection
+    func createPersonDB(people:[ABRecordRef]) {
+        let count = people.count
+        for (var idx=0; idx < count; idx++) {
+            let candidate:ABRecordRef = people[idx]
+            let candidateName = ABRecordCopyCompositeName(candidate).takeUnretainedValue()
+            let phoneRecords:ABMultiValueRef = ABRecordCopyValue(candidate, kABPersonPhoneProperty).takeUnretainedValue()
+            // No phone number
+            if (ABMultiValueGetCount(phoneRecords) == 0) {
+                continue
+            }
+            
+            // There is phone number
+            let phoneNumber:String = ABMultiValueCopyValueAtIndex(phoneRecords, 0).takeUnretainedValue() as String
+            
+            self.peopleDB[candidateName] = phoneNumber
+            
+            
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "gameStart") {
+            var vc:GameViewController = segue.destinationViewController as GameViewController
+            vc.peopleDB = peopleDB
         }
     }
     
