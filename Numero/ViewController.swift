@@ -76,7 +76,7 @@ class ViewController: UIViewController {
             let phoneNumber:String = ABMultiValueCopyValueAtIndex(phoneRecords, 0).takeUnretainedValue() as String
             
             self.peopleDB[candidateName] = phoneNumber
-            
+
             
         }
     }

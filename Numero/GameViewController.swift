@@ -18,6 +18,7 @@ class GameViewController: UIViewController, StopWatchDelegate {
     @IBOutlet var roundLabel:UILabel!
     var stopWatchTimer:StopWatch!
     var round:Int!
+    var myTimer:NSTimer!
    
     
     override func viewDidLoad() {
@@ -27,6 +28,7 @@ class GameViewController: UIViewController, StopWatchDelegate {
         stopWatchTimer = StopWatch()
         stopWatchTimer.delegate = self
         gameStart()
+       
         
     }
 
@@ -44,6 +46,8 @@ class GameViewController: UIViewController, StopWatchDelegate {
         let pickidx = arc4random() % 3
         let gamePhoneNumber = self.peopleDB[candidates[Int(pickidx)]]
         phoneNumberLabel.text = gamePhoneNumber
+        stopWatchTimer.start(5)
+        myTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTimer", userInfo: nil, repeats: true)
         
     }
     
@@ -67,7 +71,17 @@ class GameViewController: UIViewController, StopWatchDelegate {
         return candidates
     }
     
+    func refreshUI() {
+        timerLabel.text = String(format: "%02d", stopWatchTimer.durationInSec)
+    }
+    
+    func updateTimer() {
+        stopWatchTimer.update()
+        refreshUI()
+    }
+    
     func stop() {
+        myTimer!.invalidate()
         // time up then lost
         
     }
