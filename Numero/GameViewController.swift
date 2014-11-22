@@ -18,7 +18,7 @@ class GameViewController: UIViewController, StopWatchDelegate {
     @IBOutlet var roundLabel:UILabel!
     var stopWatchTimer:StopWatch!
     var round:Int!
-    var candidates:[String]!
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +39,7 @@ class GameViewController: UIViewController, StopWatchDelegate {
         round = 1
         roundLabel.text = NSString(format: "%d/10", round)
         
-        self.candidates = []
-        self.pickCandidates()
+        let candidates = self.pickCandidates()
         
         let pickidx = arc4random() % 3
         let gamePhoneNumber = self.peopleDB[candidates[Int(pickidx)]]
@@ -48,9 +47,9 @@ class GameViewController: UIViewController, StopWatchDelegate {
         
     }
     
-    func pickCandidates(){
+    func pickCandidates() -> [String]{
         let peopleInDB = [String](self.peopleDB.keys)
-       // var candidates:[String] = []
+        var candidates:[String] = []
         var pickedIndex:[Int] = []
         let count = self.peopleDB.count
         // pick 3 keys for
@@ -58,14 +57,14 @@ class GameViewController: UIViewController, StopWatchDelegate {
             let idx = Int(arc4random() % UInt32(count))
             if (find(pickedIndex, idx) == nil) {
                 pickedIndex.insert(idx, atIndex:i)
-                self.candidates.insert(peopleInDB[i], atIndex: i)
+                candidates.insert(peopleInDB[i], atIndex: i)
                 self.nameChoiceButtons[i].setTitle(candidates[i], forState: UIControlState.Normal)
                 i++
             }
           
         }
         //println(candidate
-        //return candidates
+        return candidates
     }
     
     func stop() {

@@ -84,7 +84,6 @@
                                 </state>
                                 <connections>
                                     <action selector="pickName:" destination="ohQ-Bf-e70" eventType="touchUpInside" id="FFN-Vt-8Xr"/>
-                                    <segue destination="nIs-UI-HqE" kind="modal" id="OJo-P7-Fta"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fWA-ik-XRa">
@@ -95,7 +94,6 @@
                                 </state>
                                 <connections>
                                     <action selector="pickName:" destination="ohQ-Bf-e70" eventType="touchUpInside" id="t6v-82-joe"/>
-                                    <segue destination="Enb-g1-mlB" kind="modal" id="4Je-ng-wbg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKH-Zx-ali">
@@ -106,7 +104,6 @@
                                 </state>
                                 <connections>
                                     <action selector="pickName:" destination="ohQ-Bf-e70" eventType="touchUpInside" id="W7s-rp-URf"/>
-                                    <segue destination="Enb-g1-mlB" kind="modal" id="KYD-Ey-5xu"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2wP-DP-dlf">
@@ -167,9 +164,6 @@
                                 <state key="normal" title="Next Number">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="ohQ-Bf-e70" kind="modal" id="niy-gU-qNH"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -233,9 +227,6 @@
                                 <state key="normal" title="Next Number">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="ohQ-Bf-e70" kind="modal" id="c7X-Sk-qUz"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -251,8 +242,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="KYD-Ey-5xu"/>
-        <segue reference="K4D-hY-9SC"/>
-    </inferredMetricsTieBreakers>
 </document>
