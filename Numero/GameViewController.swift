@@ -19,6 +19,7 @@ class GameViewController: UIViewController, StopWatchDelegate {
     var stopWatchTimer:StopWatch!
     var round:Int!
     var myTimer:NSTimer!
+    var answer:String!
    
     
     override func viewDidLoad() {
@@ -44,7 +45,11 @@ class GameViewController: UIViewController, StopWatchDelegate {
         let candidates = self.pickCandidates()
         
         let pickidx = arc4random() % 3
-        let gamePhoneNumber = self.peopleDB[candidates[Int(pickidx)]]
+        
+        // Store target name to answer
+        self.answer = candidates[Int(pickidx)]
+        let gamePhoneNumber = self.peopleDB[self.answer]
+       
         phoneNumberLabel.text = gamePhoneNumber
         stopWatchTimer.start(5)
         myTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTimer", userInfo: nil, repeats: true)
@@ -83,12 +88,22 @@ class GameViewController: UIViewController, StopWatchDelegate {
     func stop() {
         myTimer!.invalidate()
         // time up then lost
-        
+       /* let WrongVC:WrongViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("wrongVC") as WrongViewController
+        self.presentViewController(WrongVC, animated: true, completion: nil)*/
     }
     
     @IBAction func pickName(sender:AnyObject) {
-       // var answer:String! = (sender as UIButton).titleLabel?.text
-        
+        var answer:String! = (sender as UIButton).titleLabel?.text
+        if (answer == self.answer) {
+            let CorrectVC:CorrectViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("correctVC") as CorrectViewController
+            self.presentViewController(CorrectVC, animated: true, completion: nil)
+        }
+        else {
+            let WrongVC:WrongViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("wrongVC") as WrongViewController
+            WrongVC.correctAnswerPhone = self.peopleDB[self.answer]
+            WrongVC.correctAnswerName = self.answer
+            self.presentViewController(WrongVC, animated: true, completion: nil)
+        }
     }
     /*
     // MARK: - Navigation

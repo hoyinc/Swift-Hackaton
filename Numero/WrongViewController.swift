@@ -10,8 +10,15 @@ import UIKit
 
 class WrongViewController: UIViewController {
 
+    @IBOutlet var number:UILabel!
+    @IBOutlet var name:UILabel!
+    var correctAnswerName:String!
+    var correctAnswerPhone:String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.number.text = correctAnswerPhone
+        self.name.text = correctAnswerName
 
         // Do any additional setup after loading the view.
     }
