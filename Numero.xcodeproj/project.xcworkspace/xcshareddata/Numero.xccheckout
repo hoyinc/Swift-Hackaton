@@ -5,13 +5,13 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>D8FBF879-1993-43E3-A654-F0D9488804DE</string>
+	<string>70956F72-2A7D-4022-848F-87C4A6B1094A</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Numero</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>A3FF15F89C0943219B43E9302A00146CA7CC8164</key>
-		<string>https://github.com/hoyinc/Swift-Hackaton</string>
+		<string>https://github.com/hoyinc/Swift-Hackaton.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Numero.xcodeproj</string>
@@ -21,7 +21,7 @@
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/hoyinc/Swift-Hackaton</string>
+	<string>https://github.com/hoyinc/Swift-Hackaton.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>A3FF15F89C0943219B43E9302A00146CA7CC8164</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Swift-Hackaton</string>
+			<string>Numero</string>
 		</dict>
 	</array>
 </dict>
