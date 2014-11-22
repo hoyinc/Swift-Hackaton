@@ -9,7 +9,7 @@
 import UIKit
 import AddressBook
 
-class GameViewController: UIViewController, StopWatchDelegate, nextGameDelegate {
+class GameViewController: UIViewController, StopWatchDelegate, nextGameDelegate, GameOverDelegate {
     
     var peopleDB:[String:String]!
     @IBOutlet var phoneNumberLabel:UILabel!
@@ -20,7 +20,7 @@ class GameViewController: UIViewController, StopWatchDelegate, nextGameDelegate 
     var round:Int!
     var myTimer:NSTimer!
     var answer:String!
-
+    var score:Int!
    
     
     override func viewDidLoad() {
@@ -30,7 +30,6 @@ class GameViewController: UIViewController, StopWatchDelegate, nextGameDelegate 
         stopWatchTimer = StopWatch()
         stopWatchTimer.delegate = self
         gameStart()
-        println("call again");
         
     }
 
@@ -41,6 +40,7 @@ class GameViewController: UIViewController, StopWatchDelegate, nextGameDelegate 
     
     func gameStart() {
         round = 1
+        score = 0
         roundLabel.text = NSString(format: "%d/10", round)
         
         let candidates = self.pickCandidates()
@@ -77,6 +77,17 @@ class GameViewController: UIViewController, StopWatchDelegate, nextGameDelegate 
         }
         else {
             // end
+           
+        }
+    }
+    
+    
+    func checkGameStatus() {
+        if (round > 10) {
+            let gameOverVC:GameOverViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("gameover") as GameOverViewController
+            gameOverVC.updateScore(score)
+            gameOverVC.delegate = self
+            self.presentViewController(gameOverVC, animated: true, completion: nil)
         }
     }
     
@@ -123,6 +134,7 @@ class GameViewController: UIViewController, StopWatchDelegate, nextGameDelegate 
         myTimer!.invalidate()
         var answer:String! = (sender as UIButton).titleLabel?.text
         if (answer == self.answer) {
+            score = score + 1
             let CorrectVC:CorrectViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("correctVC") as CorrectViewController
             CorrectVC.delegate = self
             self.presentViewController(CorrectVC, animated: true, completion: nil)
@@ -134,6 +146,11 @@ class GameViewController: UIViewController, StopWatchDelegate, nextGameDelegate 
             WrongVC.delegate = self
             self.presentViewController(WrongVC, animated: true, completion: nil)
         }
+    }
+    
+    func restartGame() {
+        self.gameStart()
+        
     }
     /*
     // MARK: - Navigation

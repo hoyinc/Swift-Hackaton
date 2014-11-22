@@ -18,6 +18,7 @@
 		A30EC2391A1F725200F6C5CF /* WrongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC2381A1F725200F6C5CF /* WrongViewController.swift */; };
 		A30EC23B1A1F72DE00F6C5CF /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A30EC23A1A1F72DE00F6C5CF /* AddressBook.framework */; };
 		A30EC23D1A1F9EFB00F6C5CF /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC23C1A1F9EFB00F6C5CF /* StopWatch.swift */; };
+		A3266FFE1A20801A000BF416 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3266FFD1A20801A000BF416 /* GameOverViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		A30EC2381A1F725200F6C5CF /* WrongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WrongViewController.swift; sourceTree = "<group>"; };
 		A30EC23A1A1F72DE00F6C5CF /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		A30EC23C1A1F9EFB00F6C5CF /* StopWatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
+		A3266FFD1A20801A000BF416 /* GameOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				A30EC2361A1F724000F6C5CF /* CorrectViewController.swift */,
 				A30EC2381A1F725200F6C5CF /* WrongViewController.swift */,
 				A30EC23C1A1F9EFB00F6C5CF /* StopWatch.swift */,
+				A3266FFD1A20801A000BF416 /* GameOverViewController.swift */,
 			);
 			path = Numero;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				A30EC2351A1F722300F6C5CF /* GameViewController.swift in Sources */,
 				76F268D41A1F654A0028F4FF /* AppDelegate.swift in Sources */,
 				A30EC23D1A1F9EFB00F6C5CF /* StopWatch.swift in Sources */,
+				A3266FFE1A20801A000BF416 /* GameOverViewController.swift in Sources */,
 				A30EC2371A1F724000F6C5CF /* CorrectViewController.swift in Sources */,
 				A30EC2391A1F725200F6C5CF /* WrongViewController.swift in Sources */,
 			);

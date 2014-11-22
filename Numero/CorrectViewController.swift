@@ -27,7 +27,8 @@ class CorrectViewController: UIViewController {
         self.delegate.nextGame()
 
         self.dismissViewControllerAnimated(true, completion: {
-                    })
+                self.delegate.checkGameStatus()
+        })
     }
     
 

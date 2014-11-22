@@ -34,7 +34,7 @@ class WrongViewController: UIViewController {
        // let vc = self.parentViewController.parentViewController as GameViewController
         self.delegate.nextGame()
         self.dismissViewControllerAnimated(true, completion: {
-            
+            self.delegate.checkGameStatus()
         })
     }
     
@@ -54,4 +54,5 @@ class WrongViewController: UIViewController {
 
 protocol nextGameDelegate {
     func nextGame()
+    func checkGameStatus()
 }
