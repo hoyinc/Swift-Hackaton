@@ -65,7 +65,10 @@ class ViewController: UIViewController {
         let count = people.count
         for (var idx=0; idx < count; idx++) {
             let candidate:ABRecordRef = people[idx]
-            let candidateName:String = ABRecordCopyCompositeName(candidate).takeUnretainedValue()
+            let candidateName:String? = ABRecordCopyCompositeName(candidate).takeUnretainedValue()
+            if (candidateName == nil) {
+                continue
+            }
             let phoneRecords:ABMultiValueRef = ABRecordCopyValue(candidate, kABPersonPhoneProperty).takeUnretainedValue()
             // No phone number
             if (ABMultiValueGetCount(phoneRecords) == 0) {
@@ -75,7 +78,7 @@ class ViewController: UIViewController {
             // There is phone number
             let phoneNumber:String = ABMultiValueCopyValueAtIndex(phoneRecords, 0).takeUnretainedValue() as String
             
-            self.peopleDB[candidateName] = phoneNumber
+            self.peopleDB[candidateName!] = phoneNumber
 
             
         }
