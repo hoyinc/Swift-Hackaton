@@ -14,6 +14,7 @@ class WrongViewController: UIViewController {
     @IBOutlet var name:UILabel!
     var correctAnswerName:String!
     var correctAnswerPhone:String!
+    var delegate:nextGameDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,16 @@ class WrongViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func nextNumber() {
+       // let vc = self.parentViewController.parentViewController as GameViewController
+        self.delegate.nextGame()
+        self.dismissViewControllerAnimated(true, completion: {
+            
+        })
+    }
+    
+    
 
     /*
     // MARK: - Navigation
@@ -39,4 +50,8 @@ class WrongViewController: UIViewController {
     }
     */
 
+}
+
+protocol nextGameDelegate {
+    func nextGame()
 }

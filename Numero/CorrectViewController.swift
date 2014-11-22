@@ -10,6 +10,8 @@ import UIKit
 
 class CorrectViewController: UIViewController {
 
+    var delegate:nextGameDelegate!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,6 +21,13 @@ class CorrectViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func nextNumber() {
+        self.delegate.nextGame()
+
+        self.dismissViewControllerAnimated(true, completion: {
+                    })
     }
     
 

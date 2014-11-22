@@ -9,7 +9,7 @@
 import UIKit
 import AddressBook
 
-class GameViewController: UIViewController, StopWatchDelegate {
+class GameViewController: UIViewController, StopWatchDelegate, nextGameDelegate {
     
     var peopleDB:[String:String]!
     @IBOutlet var phoneNumberLabel:UILabel!
@@ -20,6 +20,7 @@ class GameViewController: UIViewController, StopWatchDelegate {
     var round:Int!
     var myTimer:NSTimer!
     var answer:String!
+
    
     
     override func viewDidLoad() {
@@ -29,7 +30,7 @@ class GameViewController: UIViewController, StopWatchDelegate {
         stopWatchTimer = StopWatch()
         stopWatchTimer.delegate = self
         gameStart()
-       
+        println("call again");
         
     }
 
@@ -56,6 +57,29 @@ class GameViewController: UIViewController, StopWatchDelegate {
         
     }
     
+    func nextGame() {
+        round = round + 1
+      
+
+        if (round <= 10) {
+            roundLabel.text = NSString(format: "%d/10", round)
+            let candidates = self.pickCandidates()
+            
+            let pickidx = arc4random() % 3
+            
+            // Store target name to answer
+            self.answer = candidates[Int(pickidx)]
+            let gamePhoneNumber = self.peopleDB[self.answer]
+            phoneNumberLabel.text = gamePhoneNumber
+            stopWatchTimer.start(5)
+            myTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTimer", userInfo: nil, repeats: true)
+
+        }
+        else {
+            // end
+        }
+    }
+    
     func pickCandidates() -> [String]{
         let peopleInDB = [String](self.peopleDB.keys)
         var candidates:[String] = []
@@ -65,8 +89,9 @@ class GameViewController: UIViewController, StopWatchDelegate {
         for (var i=0; i < 3; i) {
             let idx = Int(arc4random() % UInt32(count))
             if (find(pickedIndex, idx) == nil) {
+                
                 pickedIndex.insert(idx, atIndex:i)
-                candidates.insert(peopleInDB[i], atIndex: i)
+                candidates.insert(peopleInDB[idx], atIndex: i)
                 self.nameChoiceButtons[i].setTitle(candidates[i], forState: UIControlState.Normal)
                 i++
             }
@@ -88,20 +113,25 @@ class GameViewController: UIViewController, StopWatchDelegate {
     func stop() {
         myTimer!.invalidate()
         // time up then lost
-       /* let WrongVC:WrongViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("wrongVC") as WrongViewController
-        self.presentViewController(WrongVC, animated: true, completion: nil)*/
+        let WrongVC:WrongViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("wrongVC") as WrongViewController
+        WrongVC.delegate = self
+        self.presentViewController(WrongVC, animated: true, completion: nil)
+        
     }
     
     @IBAction func pickName(sender:AnyObject) {
+        myTimer!.invalidate()
         var answer:String! = (sender as UIButton).titleLabel?.text
         if (answer == self.answer) {
             let CorrectVC:CorrectViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("correctVC") as CorrectViewController
+            CorrectVC.delegate = self
             self.presentViewController(CorrectVC, animated: true, completion: nil)
         }
         else {
             let WrongVC:WrongViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("wrongVC") as WrongViewController
             WrongVC.correctAnswerPhone = self.peopleDB[self.answer]
             WrongVC.correctAnswerName = self.answer
+            WrongVC.delegate = self
             self.presentViewController(WrongVC, animated: true, completion: nil)
         }
     }
@@ -116,3 +146,5 @@ class GameViewController: UIViewController, StopWatchDelegate {
     */
 
 }
+
+
