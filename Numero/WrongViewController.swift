@@ -32,7 +32,7 @@ class WrongViewController: UIViewController {
     
     @IBAction func nextNumber() {
        // let vc = self.parentViewController.parentViewController as GameViewController
-      //  self.delegate.nextGame()
+        self.delegate.nextGame()
         self.dismissViewControllerAnimated(true, completion: {
             if (self.delegate.round == 10) {
                 self.delegate.gameOver()
