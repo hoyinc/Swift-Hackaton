@@ -35,7 +35,10 @@ class GameViewController: UIViewController, StopWatchDelegate, GameDelegate {
             peopleDB["KFC Delivery"] = "2180-0000"
             peopleDB["Cathy Pacific"] = "2747-3333"
             peopleDB["SmarTone Hotline"] = "2880-2688"
+            peopleDB["Directory Service"] = "1081"
         }
+        
+        // game Start
         gameStart()
         
     }
@@ -48,6 +51,14 @@ class GameViewController: UIViewController, StopWatchDelegate, GameDelegate {
     func gameStart() {
         round = 1
         score = 0
+        
+        createNewRound()
+        stopWatchTimer.start(5)
+        myTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTimer", userInfo: nil, repeats: true)
+        
+    }
+    
+    func createNewRound() {
         roundLabel.text = NSString(format: "%d/10", round)
         
         let candidates = self.pickCandidates()
@@ -57,45 +68,16 @@ class GameViewController: UIViewController, StopWatchDelegate, GameDelegate {
         // Store target name to answer
         self.answer = candidates[Int(pickidx)]
         let gamePhoneNumber = self.peopleDB[self.answer]
-       
-        phoneNumberLabel.text = gamePhoneNumber
-        stopWatchTimer.start(5)
-        myTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTimer", userInfo: nil, repeats: true)
         
+        phoneNumberLabel.text = gamePhoneNumber
+
     }
     
     func nextGame() {
         round = round + 1
-      
-
-        if (round <= 10) {
-            roundLabel.text = NSString(format: "%d/10", round)
-            let candidates = self.pickCandidates()
-            
-            let pickidx = arc4random() % 3
-            
-            // Store target name to answer
-            self.answer = candidates[Int(pickidx)]
-            let gamePhoneNumber = self.peopleDB[self.answer]
-            phoneNumberLabel.text = gamePhoneNumber
-            stopWatchTimer.start(5)
-            myTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTimer", userInfo: nil, repeats: true)
-
-        }
-        else {
-            // end
-           
-        }
-    }
-    
-    
-    func checkGameStatus() {
-        if (round > 10) {
-            let gameOverVC:GameOverViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("gameover") as GameOverViewController
-            gameOverVC.updateScore(score)
-            gameOverVC.delegate = self
-            self.presentViewController(gameOverVC, animated: true, completion: nil)
-        }
+        createNewRound()
+        stopWatchTimer.start(5)
+        myTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTimer", userInfo: nil, repeats: true)
     }
     
     func pickCandidates() -> [String]{
@@ -156,7 +138,10 @@ class GameViewController: UIViewController, StopWatchDelegate, GameDelegate {
     }
     
     func gameOver() {
-        
+        let gameOverVC:GameOverViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("gameover") as GameOverViewController
+        gameOverVC.updateScore(score)
+        gameOverVC.delegate = self
+        self.presentViewController(gameOverVC, animated: true, completion: nil)
     }
     
     /*
@@ -178,7 +163,6 @@ protocol GameDelegate {
     
     func gameStart()
     func nextGame()
-    func checkGameStatus()
     func gameOver()
 }
 

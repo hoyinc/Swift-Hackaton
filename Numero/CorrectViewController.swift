@@ -27,7 +27,9 @@ class CorrectViewController: UIViewController {
         self.delegate.nextGame()
 
         self.dismissViewControllerAnimated(true, completion: {
-                self.delegate.checkGameStatus()
+            if (self.delegate.round == 10) {
+                self.delegate.gameOver()
+            }
         })
     }
     
