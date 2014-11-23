@@ -128,7 +128,7 @@ class GameViewController: UIViewController, StopWatchDelegate, GameDelegate {
         if (answer == self.answer) {
             score = score + 1
             let CorrectVC:CorrectViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("correctVC") as CorrectViewController
-            CorrectVC.roundNumber = self.roundLabel.text
+           // CorrectVC.roundNumber = self.roundLabel.text
             CorrectVC.delegate = self
             self.presentViewController(CorrectVC, animated: true, completion: nil)
         }
@@ -136,7 +136,7 @@ class GameViewController: UIViewController, StopWatchDelegate, GameDelegate {
             let WrongVC:WrongViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("wrongVC") as WrongViewController
             WrongVC.correctAnswerPhone = self.peopleDB[self.answer]
             WrongVC.correctAnswerName = self.answer
-            WrongVC.roundNumber = self.roundLabel.text
+        //    WrongVC.roundNumber = self.roundLabel.text
             WrongVC.delegate = self
             self.presentViewController(WrongVC, animated: true, completion: nil)
         }

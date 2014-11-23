@@ -16,7 +16,8 @@ class CorrectViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.CorrectVCRoundLabel.text = roundNumber
+        self.CorrectVCRoundLabel.text = NSString(format:"%d/%d", self.delegate.round,
+            self.delegate.totalRound)
 
         // Do any additional setup after loading the view.
     }
