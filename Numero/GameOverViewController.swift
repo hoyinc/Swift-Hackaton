@@ -13,7 +13,7 @@ class GameOverViewController: UIViewController {
     var score:Int!
     @IBOutlet var scoreLabel:UILabel!
     
-    var delegate:GameOverDelegate!
+    var delegate:GameDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +26,9 @@ class GameOverViewController: UIViewController {
     }
     
     @IBAction func newGame() {
-        self.delegate.restartGame()
-        self.dismissViewControllerAnimated(true , completion: nil)
+        self.dismissViewControllerAnimated(true , completion: {
+            self.delegate.gameStart()
+        })
     }
     
     func updateScore(score:Int) {
@@ -35,7 +36,8 @@ class GameOverViewController: UIViewController {
     }
     
 }
-
+/*
 protocol GameOverDelegate {
     func restartGame()
 }
+*/

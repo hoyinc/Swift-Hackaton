@@ -14,7 +14,7 @@ class WrongViewController: UIViewController {
     @IBOutlet var name:UILabel!
     var correctAnswerName:String!
     var correctAnswerPhone:String!
-    var delegate:nextGameDelegate!
+    var delegate:GameDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +52,3 @@ class WrongViewController: UIViewController {
 
 }
 
-protocol nextGameDelegate {
-    func nextGame()
-    func checkGameStatus()
-}

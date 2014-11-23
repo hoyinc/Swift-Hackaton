@@ -9,7 +9,7 @@
 import UIKit
 import AddressBook
 
-class GameViewController: UIViewController, StopWatchDelegate, nextGameDelegate, GameOverDelegate {
+class GameViewController: UIViewController, StopWatchDelegate, GameDelegate {
     
     var peopleDB:[String:String]!
     @IBOutlet var phoneNumberLabel:UILabel!
@@ -29,6 +29,13 @@ class GameViewController: UIViewController, StopWatchDelegate, nextGameDelegate,
         // Do any additional setup after loading the view.
         stopWatchTimer = StopWatch()
         stopWatchTimer.delegate = self
+        if (peopleDB.count < 10) { // to make the game more fun append some delivery phone number
+            peopleDB["Pizza Hut Delivery"] = "3180-0000"
+            peopleDB["McDonald Delivery"] = "2338-2338"
+            peopleDB["KFC Delivery"] = "2180-0000"
+            peopleDB["Cathy Pacific"] = "2747-3333"
+            peopleDB["SmarTone Hotline"] = "2880-2688"
+        }
         gameStart()
         
     }
@@ -148,10 +155,10 @@ class GameViewController: UIViewController, StopWatchDelegate, nextGameDelegate,
         }
     }
     
-    func restartGame() {
-        self.gameStart()
+    func gameOver() {
         
     }
+    
     /*
     // MARK: - Navigation
 
@@ -162,6 +169,17 @@ class GameViewController: UIViewController, StopWatchDelegate, nextGameDelegate,
     }
     */
 
+}
+
+// a protocol for managing the game
+protocol GameDelegate {
+    var round:Int! {get set}
+    var score:Int! {get set}
+    
+    func gameStart()
+    func nextGame()
+    func checkGameStatus()
+    func gameOver()
 }
 
 

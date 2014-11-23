@@ -10,7 +10,7 @@ import UIKit
 
 class CorrectViewController: UIViewController {
 
-    var delegate:nextGameDelegate!
+    var delegate:GameDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
