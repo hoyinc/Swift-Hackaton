@@ -21,6 +21,7 @@ class GameViewController: UIViewController, StopWatchDelegate, GameDelegate {
     var myTimer:NSTimer!
     var answer:String!
     var score:Int!
+    var totalRound:Int!
    
     
     override func viewDidLoad() {
@@ -29,7 +30,8 @@ class GameViewController: UIViewController, StopWatchDelegate, GameDelegate {
         // Do any additional setup after loading the view.
         stopWatchTimer = StopWatch()
         stopWatchTimer.delegate = self
-        if (peopleDB.count < 10) { // to make the game more fun append some delivery phone number
+        totalRound = 10
+        if (peopleDB.count < totalRound) { // to make the game more fun append some delivery phone number
             peopleDB["Pizza Hut Delivery"] = "3180-0000"
             peopleDB["McDonald Delivery"] = "2338-2338"
             peopleDB["KFC Delivery"] = "2180-0000"
@@ -59,7 +61,7 @@ class GameViewController: UIViewController, StopWatchDelegate, GameDelegate {
     }
     
     func createNewRound() {
-        roundLabel.text = NSString(format: "%d/10", round)
+        roundLabel.text = NSString(format: "%d/%d", round, totalRound)
         
         let candidates = self.pickCandidates()
         
@@ -74,10 +76,11 @@ class GameViewController: UIViewController, StopWatchDelegate, GameDelegate {
     }
     
     func nextGame() {
-        round = round + 1
-        createNewRound()
-        stopWatchTimer.start(5)
-        myTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTimer", userInfo: nil, repeats: true)
+        if (round <= totalRound) {
+            createNewRound()
+            stopWatchTimer.start(5)
+            myTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTimer", userInfo: nil, repeats: true)
+        }
     }
     
     func pickCandidates() -> [String]{
@@ -102,7 +105,7 @@ class GameViewController: UIViewController, StopWatchDelegate, GameDelegate {
     }
     
     func refreshUI() {
-        timerLabel.text = String(format: "%02d", stopWatchTimer.durationInSec)
+        timerLabel.text = String(format: "%d", stopWatchTimer.durationInSec)
     }
     
     func updateTimer() {
@@ -142,6 +145,7 @@ class GameViewController: UIViewController, StopWatchDelegate, GameDelegate {
         gameOverVC.updateScore(score)
         gameOverVC.delegate = self
         self.presentViewController(gameOverVC, animated: true, completion: nil)
+        
     }
     
     /*
@@ -160,6 +164,7 @@ class GameViewController: UIViewController, StopWatchDelegate, GameDelegate {
 protocol GameDelegate {
     var round:Int! {get set}
     var score:Int! {get set}
+    var totalRound:Int! {get set}
     
     func gameStart()
     func nextGame()

@@ -26,8 +26,9 @@ class GameOverViewController: UIViewController {
     }
     
     @IBAction func newGame() {
+        self.delegate.gameStart()
         self.dismissViewControllerAnimated(true , completion: {
-            self.delegate.gameStart()
+          
         })
     }
     

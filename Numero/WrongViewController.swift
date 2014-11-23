@@ -31,10 +31,13 @@ class WrongViewController: UIViewController {
     
     
     @IBAction func nextNumber() {
-       // let vc = self.parentViewController.parentViewController as GameViewController
-        self.delegate.nextGame()
+        self.delegate.round = self.delegate.round + 1
+        if (self.delegate.round <= self.delegate.totalRound) {
+            self.delegate.nextGame()
+        }
+        
         self.dismissViewControllerAnimated(true, completion: {
-            if (self.delegate.round == 10) {
+            if (self.delegate.round > self.delegate.totalRound) {
                 self.delegate.gameOver()
             }
         })
