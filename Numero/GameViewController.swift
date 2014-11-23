@@ -31,7 +31,7 @@ class GameViewController: UIViewController, StopWatchDelegate, GameDelegate {
         stopWatchTimer = StopWatch()
         stopWatchTimer.delegate = self
         totalRound = 10
-        if (peopleDB.count < totalRound) { // to make the game more fun append some delivery phone number
+        if (peopleDB.count < 10) { // to make the game more fun append some delivery phone number
             peopleDB["Pizza Hut Delivery"] = "3180-0000"
             peopleDB["McDonald Delivery"] = "2338-2338"
             peopleDB["KFC Delivery"] = "2180-0000"
