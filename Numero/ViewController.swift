@@ -65,7 +65,7 @@ class ViewController: UIViewController {
         let count = people.count
         for (var idx=0; idx < count; idx++) {
             let candidate:ABRecordRef = people[idx]
-            let candidateName:String? = ABRecordCopyCompositeName(candidate).takeUnretainedValue()
+            let candidateName:String? = ABRecordCopyCompositeName(candidate)?.takeUnretainedValue()
             if (candidateName == nil) {
                 continue
             }

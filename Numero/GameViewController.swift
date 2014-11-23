@@ -144,7 +144,6 @@ class GameViewController: UIViewController, StopWatchDelegate, GameDelegate {
     
     func gameOver() {
         let gameOverVC:GameOverViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("gameover") as GameOverViewController
-        gameOverVC.updateScore(score)
         gameOverVC.delegate = self
         self.presentViewController(gameOverVC, animated: true, completion: nil)
         

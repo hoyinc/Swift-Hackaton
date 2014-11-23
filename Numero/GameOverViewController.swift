@@ -10,14 +10,13 @@ import UIKit
 
 class GameOverViewController: UIViewController {
     
-    var score:Int!
     @IBOutlet var scoreLabel:UILabel!
     
     var delegate:GameDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.scoreLabel.text = NSString(format: "%d/10", score)
+        self.scoreLabel.text = NSString(format: "%d/10", self.delegate.score)
 
     }
     
@@ -30,10 +29,6 @@ class GameOverViewController: UIViewController {
         self.dismissViewControllerAnimated(true , completion: {
           
         })
-    }
-    
-    func updateScore(score:Int) {
-        self.score = score
     }
     
 }
