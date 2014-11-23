@@ -9,11 +9,14 @@
 import UIKit
 
 class CorrectViewController: UIViewController {
-
+    
+    @IBOutlet var CorrectVCRoundLabel:UILabel!
+    var roundNumber:String!
     var delegate:GameDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.CorrectVCRoundLabel.text = roundNumber
 
         // Do any additional setup after loading the view.
     }
