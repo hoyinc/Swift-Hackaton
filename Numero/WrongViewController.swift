@@ -12,14 +12,17 @@ class WrongViewController: UIViewController {
 
     @IBOutlet var number:UILabel!
     @IBOutlet var name:UILabel!
+    @IBOutlet var WrongVCRoundLabel:UILabel!
     var correctAnswerName:String!
     var correctAnswerPhone:String!
+    var roundNumber:String!
     var delegate:GameDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.number.text = correctAnswerPhone
         self.name.text = correctAnswerName
+        self.WrongVCRoundLabel.text = roundNumber
 
         // Do any additional setup after loading the view.
     }
