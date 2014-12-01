@@ -50,6 +50,7 @@ class ViewController: UIViewController {
             if !granted {
                 // warn the user that because they just denied permission, this functionality won't work
                 // also let them know that they have to fix this in settings
+                
                 return
             }
 

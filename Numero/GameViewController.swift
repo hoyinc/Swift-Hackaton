@@ -118,6 +118,8 @@ class GameViewController: UIViewController, StopWatchDelegate, GameDelegate {
         // time up then lost
         let WrongVC:WrongViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("wrongVC") as WrongViewController
         WrongVC.delegate = self
+        WrongVC.correctAnswerPhone = self.peopleDB[self.answer]
+        WrongVC.correctAnswerName = self.answer
         self.presentViewController(WrongVC, animated: true, completion: nil)
         
     }
